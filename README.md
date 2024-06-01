@@ -1,5 +1,12 @@
 # Ultimate Go
 
+## Prepare your 🧠
+
+> If you do not agree with the idioms and patterns of a given language, you should not be using that language because you are just going to be frustrated. - William Kennedy
+
+I want to take the above statement and expound on it. If you are not willing to let Go be Go, you will inevitably find yourself pissed off. And I think that same goes for language that you are using. What my humble suggestion is that you see the beauty in all programming languages, yes, even the ones that you do not agree with. The language you choose should be the one that is the right tool for the job. Remembering that will make you a better engineer.
+
+
 ## Polymorphism - 4.2.1
 
 > "Polymorphism means that you write a certain program and it behaves differently depending on the data that it operates on."-
