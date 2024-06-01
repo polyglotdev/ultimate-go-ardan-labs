@@ -573,3 +573,261 @@ On the bad method in `reader` every time that its called there has to be an allo
 We have to be consistent with our data semantics, but we must also be concerned with the impact the design is going to effect the users program. Designing API that are sympathetic with things like the garbage collector.
 
 > Remember reader is a an interface type, which makes it a valueless type. And yes, you can declare a variable of the interface type `r` does not exist because we can neither read nor write to it. It is a valueless type.
+
+> 🧠 You can simply multiply the **number of bytes by 8** **to get the number of bits**.
+
+---
+
+## Struct Types
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#struct-types)
+
+Struct types are a way of creating complex types that group fields of data together. They are a great way of organizing and sharing the different aspects of the data your program consumes.
+
+A computer architecture’s potential performance is determined predominantly by its word length (the number of bits that can be processed per access) and, more importantly, memory size, or the number of words that it can access.
+
+## Notes
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#notes)
+
+- We can use the struct literal form to initialize a value from a struct type.
+- The dot (`.`) operator allows us to access individual field values.
+- We can create anonymous structs.
+
+## `Struct` Quotes
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#quotes)
+
+> "Implicit conversion of types is the Halloween special of coding. Whoever thought of them deserves their own special hell." - Martin Thompson
+
+## Links
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#links)
+
+[Understanding Type in Go](https://www.ardanlabs.com/blog/2013/07/understanding-type-in-go.html) - William Kennedy
+[Object Oriented Programming in Go](https://www.ardanlabs.com/blog/2013/07/object-oriented-programming-in-go.html) - William Kennedy
+[Padding is hard](https://dave.cheney.net/2015/10/09/padding-is-hard) - Dave Cheney
+[Structure Member Alignment, Padding and Data Packing](https://www.geeksforgeeks.org/structure-member-alignment-padding-and-data-packing/)
+[The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing) - Eric S. Raymond
+
+## Code Review
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#code-review)
+
+[Declare, create and initialize struct types](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/example1/example1.go) ([Go Playground](https://play.golang.org/p/djzGT1JtSwy))
+[Anonymous struct types](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/example2/example2.go) ([Go Playground](https://play.golang.org/p/09cxjnmfcdC))
+[Named vs Unnamed types](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/example3/example3.go) ([Go Playground](https://play.golang.org/p/ky91roJDjir))
+
+## Advanced Code Review
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#advanced-code-review)
+
+[Struct type alignments](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/advanced/example1/example1.go) ([Go Playground](https://play.golang.org/p/rAvtS7cgD0z))
+
+## Exercises
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#exercises)
+
+### Exercise 1
+
+[](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/README.md#exercise-1)
+
+**Part A:** Declare a struct type to maintain information about a user (name, email and age). Create a value of this type, initialize with values and display each field.
+
+**Part B:** Declare and initialize an anonymous struct type with the same three fields. Display the value.
+
+[Template](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/exercises/template1/template1.go) ([Go Playground](https://play.golang.org/p/h-7BEn2U3Rz)) | [Answer](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/struct_types/exercises/exercise1/exercise1.go) ([Go Playground](https://play.golang.org/p/eT_gLZKeHk-))
+
+## Explain Golang Padding and Alignment
+
+In Golang, padding and alignment are crucial concepts for optimizing memory usage and ensuring efficient access to data structures. These concepts are particularly important when dealing with structs, which are composite data types that group together variables under a single name.
+
+Alignment refers to the way data is arranged and accessed in memory. Each data type in Go has an alignment requirement, which is the boundary on which the data must be placed. This requirement ensures that the CPU can access the data efficiently. The alignment values for common data types are as follows:
+
+- `byte`, `int8`, `uint8`: 1 byte
+- `int16`, `uint16`: 2 bytes
+- `int32`, `uint32`, `float32`, `complex64`: 4 bytes
+- `int64`, `uint64`, `float64`, `complex128`, `string`, `slice`: 8 bytes
+
+The alignment requirement means that the memory address of a variable must be a multiple of its alignment value. For example, an int32 must be placed at an address that is a multiple of 4.
+
+## Padding
+
+Padding is the extra space added between fields in a struct to satisfy alignment requirements. When fields in a struct are not aligned properly, the compiler adds padding bytes to ensure that each field starts at an address that is a multiple of its alignment value. This padding can lead to wasted memory if not managed properly.
+
+```go
+type Example struct {
+  a int8
+  b string
+  c int8
+  d int32
+}
+```
+
+In this struct, the fields are not optimally ordered, leading to padding:
+
+- `a` (int8) starts at offset 0
+- `b` (string) starts at offset 8 (7 bytes of padding after `a`)
+- `c` (int8) starts at offset 24 (16 bytes for `b` and 7 bytes of padding)
+- `d` (int32) starts at offset 28 (3 bytes of padding after `c`)
+
+The total size of this struct is 32 bytes, with significant padding added to align the fields properly
+
+## Pointers
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#pointers)
+
+Pointers provide a way to share data across program boundaries. Having the ability to share and reference data with a pointer provides the benefit of efficiency. There is only one copy of the data and everyone can see it changing. The cost is that anyone can change the data which can cause side effects in running programs.
+
+## Pointer Notes
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#notes)
+
+- Use pointers to share data.
+- Values in Go are always pass by value.
+- "Value of", what's in the box. "Address of" ( **&** ), where is the box.
+- The (\*) operator declares a pointer variable and the "Value that the pointer points to".
+
+## Escape Analysis
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#escape-analysis)
+
+- When a value could be referenced after the function that constructs the value returns.
+- When the compiler determines a value is too large to fit on the stack.
+- When the compiler doesn’t know the size of a value at compile time.
+- When a value is decoupled through the use of function or interface values.
+
+## Garbage Collection History
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#garbage-collection-history)
+
+The design of the Go GC has changed over the years:
+
+- Go 1.0, Stop the world mark sweep collector based heavily on tcmalloc.
+- Go 1.2, Precise collector, wouldn't mistake big numbers (or big strings of text) for pointers.
+- Go 1.3, Fully precise tracking of all stack values.
+- Go 1.4, Mark and sweep now parallel, but still stop the world.
+- Go 1.5, New GC design, focusing on latency over throughput.
+- Go 1.6, GC improvements, handling larger heaps with lower latency.
+- Go 1.7, GC improvements, handling larger number of idle goroutines, substantial stack size fluctuation, or large package-level variables.
+- Go 1.8, GC improvements, collection pauses should be significantly shorter than they were in Go 1.7, usually under 100 microseconds and often as low as 10 microseconds.
+- Go 1.9, Large object allocation performance is significantly improved in applications using large (>50GB) heaps containing many large objects.
+- Go 1.10, Many applications should experience significantly lower allocation latency and overall performance overhead when the garbage collector is active.
+
+## Garbage Collection Semantics
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#garbage-collection-semantics)
+
+[Garbage Collection Semantics Part I](https://www.ardanlabs.com/blog/2018/12/garbage-collection-in-go-part1-semantics.html) - William Kennedy
+
+## Stack vs Heap
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#stack-vs-heap)
+
+> "The stack is for data that needs to persist only for the lifetime of the function that constructs it, and is reclaimed without any cost when the function exits. The heap is for data that needs to persist after the function that constructs it exits, and is reclaimed by a sometimes costly garbage collection." - Ayan George
+
+## Pointer Links
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#links)
+
+### Pointer Mechanics
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#pointer-mechanics)
+
+[Pointers vs. Values](https://golang.org/doc/effective_go.html#pointers_vs_values)
+[Language Mechanics On Stacks And Pointers](https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html) - William Kennedy
+[Using Pointers In Go](https://www.ardanlabs.com/blog/2014/12/using-pointers-in-go.html) - William Kennedy
+[Understanding Pointers and Memory Allocation](https://www.ardanlabs.com/blog/2013/07/understanding-pointers-and-memory.html) - William Kennedy
+
+### Stacks
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#stacks)
+
+[Contiguous Stack Proposal](https://docs.google.com/document/d/1wAaf1rYoM4S4gtnPh0zOlGzWtrZFQ5suE8qr2sD8uWQ/pub)
+
+### Escape Analysis and Inlining
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#escape-analysis-and-inlining)
+
+[Go Escape Analysis Flaws](https://docs.google.com/document/d/1CxgUBPlx9iJzkz9JWkb6tIpTe5q32QDmz8l0BouG0Cw)
+[Compiler Optimizations](https://github.com/golang/go/wiki/CompilerOptimizations)
+
+### Garbage Collection
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#garbage-collection)
+
+[The Garbage Collection Handbook](http://gchandbook.org/)
+[GC Pacer Redesign - 2021](https://github.com/golang/proposal/blob/master/design/44167-gc-pacer-redesign.md) - Michael Knyszek
+[Tracing Garbage Collection](https://en.wikipedia.org/wiki/Tracing_garbage_collection)
+[Go Blog - 1.5 GC](https://blog.golang.org/go15gc)
+[Go GC: Solving the Latency Problem](https://www.youtube.com/watch?v=aiv1JOfMjm0&index=16&list=PL2ntRZ1ySWBf-_z-gHCOR2N156Nw930Hm)
+[Concurrent garbage collection](http://rubinius.com/2013/06/22/concurrent-garbage-collection)
+[Go 1.5 concurrent garbage collector pacing](https://docs.google.com/document/d/1wmjrocXIWTr1JxU-3EQBI6BK6KgtiFArkG47XK73xIQ/edit)
+[Eliminating Stack Re-Scanning](https://github.com/golang/proposal/blob/master/design/17503-eliminate-rescan.md)
+[Why golang garbage-collector not implement Generational and Compact gc?](https://groups.google.com/forum/m/#!topic/golang-nuts/KJiyv2mV2pU) - Ian Lance Taylor
+[Getting to Go: The Journey of Go's Garbage Collector](https://blog.golang.org/ismmkeynote) - Rick Hudson
+[Garbage Collection In Go : Part I - Semantics](https://www.ardanlabs.com/blog/2018/12/garbage-collection-in-go-part1-semantics.html) - William Kennedy
+[Garbage Collection In Go : Part II - GC Traces](https://www.ardanlabs.com/blog/2019/05/garbage-collection-in-go-part2-gctraces.html) - William Kennedy
+[Garbage Collection In Go : Part III - GC Pacing](https://www.ardanlabs.com/blog/2019/07/garbage-collection-in-go-part3-gcpacing.html) - William Kennedy
+[Go memory ballast: How I learnt to stop worrying and love the heap](https://blog.twitch.tv/en/2019/04/10/go-memory-ballast-how-i-learnt-to-stop-worrying-and-love-the-heap-26c2462549a2/) - Ross Engers
+
+### Static Single Assignment Optimizations
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#static-single-assignment-optimizations)
+
+[GopherCon 2015: Ben Johnson - Static Code Analysis Using SSA](https://www.youtube.com/watch?v=D2-gaMvWfQY)
+[package ssa](https://godoc.org/golang.org/x/tools/go/ssa)
+[Understanding Compiler Optimization](https://www.youtube.com/watch?v=FnGCDLhaxKU)
+
+### Debugging code generation
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#debugging-code-generation)
+
+[Debugging code generation in Go](https://rakyll.org/codegen/) - JBD
+
+## Pointer Code Review
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#code-review)
+
+[Pass by Value](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/example1/example1.go) ([Go Playground](https://play.golang.org/p/9kxh18hd_BT))
+[Sharing data I](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/example2/example2.go) ([Go Playground](https://play.golang.org/p/mJz5RINaimn))
+[Sharing data II](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/example3/example3.go) ([Go Playground](https://play.golang.org/p/GpmPICMGMre))
+[Escape Analysis](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/example4/example4.go) ([Go Playground](https://play.golang.org/p/BCtJrNRJGun))
+[Stack grow](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/example5/example5.go) ([Go Playground](https://play.golang.org/p/vBKF2hXvKBb))
+
+### Escape Analysis Flaws
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#escape-analysis-flaws)
+
+[Indirect Assignment](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/flaws/example1/example1_test.go)
+[Indirection Execution](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/flaws/example2/example2_test.go)
+[Assignment Slices Maps](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/flaws/example3/example3_test.go)
+[Indirection Level Interfaces](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/flaws/example4/example4_test.go)
+[Unknown](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/flaws/example5/example5_test.go)
+
+## Pointer Exercises
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#exercises)
+
+### Pointer Exercise 1
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#exercise-1)
+
+**Part A** Declare and initialize a variable of type int with the value of 20. Display the _address of_ and _value of_ the variable.
+
+**Part B** Declare and initialize a pointer variable of type int that points to the last variable you just created. Display the _address of_ , _value of_ and the _value that the pointer points to_.
+
+[Template](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/exercises/template1/template1.go) ([Go Playground](https://play.golang.org/p/6QYTKWzF8s8)) | [Answer](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/exercises/exercise1/exercise1.go) ([Go Playground](https://play.golang.org/p/qq5P9gRDHKc))
+
+### Pointer Exercise 2
+
+[](https://github.com/ardanlabs/gotraining/tree/master/topics/go/language/pointers#exercise-2)
+
+Declare a struct type and create a value of this type. Declare a function that can change the value of some field in this struct type. Display the value before and after the call to your function.
+
+[Template](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/exercises/template2/template2.go) ([Go Playground](https://play.golang.org/p/nolKjrgBX-X)) | [Answer](https://github.com/ardanlabs/gotraining/blob/master/topics/go/language/pointers/exercises/exercise2/exercise2.go) ([Go Playground](https://play.golang.org/p/i6utWhgDUH4))
+
+## Value vs Pointer Semantics
+
+1. Value Semantics: When you use value semantics, you are **making a copy of the original value** and passing around that copy. Any changes you make to the copy will not affect the original value. This is the default way of passing data in Go. All data types in Go are pass-by-value. This means that when you call a function with a parameter, a new copy of the parameter is created for the function's use.
+2. Pointer Semantics: When you use pointer semantics, you are **passing around the memory address** (or pointer) where the value is stored. This means that if you change the value at that memory address, the change will be seen by anyone who has access to that memory address. This is useful when you want to change the value of a variable that was defined outside the function, or when you want to avoid copying large amounts of data.

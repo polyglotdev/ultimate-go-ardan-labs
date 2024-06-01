@@ -1,3 +1,3 @@
 module github.com/polyglotdev/ultimate-go-ardan-labs
 
-go 1.22.2
+go 1.22.3
