@@ -37,6 +37,17 @@ I want to take the above statement and expound on it. If you are not willing to 
 - Have a point of view.
 - Value introspection and self-review.
 
+Software engineering might be the only field that asks you to write before you were taught to read.
+
+> “If most computer people lack understanding and knowledge, **then what they will select will also be lacking**.” - Alan Kay
+
+> "The software business is one of the few places we teach people to write before we teach them to read." - Tom Love (inventor of Objective C)
+
+> "Code is read many more times than it is written." - Dave Cheney
+
+> "Programming is, among other things, a kind of writing. One way to learn writing is to write, but in all other forms of writing, one also reads. We read examples both good and bad to facilitate learning. But how many programmers learn to write programs by reading programs?" - Gerald M. Weinberg
+
+> "Skill develops when we produce, not consume." - Katrina Owen
 ---
 ## Polymorphism - 4.2.1
 
