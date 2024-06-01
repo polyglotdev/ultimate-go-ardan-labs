@@ -76,9 +76,9 @@ How much code do you think you can maintain in your head? I believe asking a sin
 
 **Quotes**
 
-> "Let's imagine a project that's going to end up with a million lines of code or more. The probability of those projects being successful in the United States these days is very low - well under 50%. That's debatable." - Tom Love (inventor of Objective C)_
+> "Let's imagine a project that's going to end up with a million lines of code or more. The probability of those projects being successful in the United States these days is very low - well under 50%. That's debatable." - Tom Love (inventor of Objective C)
 
-> "100k lines of code fit inside a box of paper." - Tom Love (inventor of Objective C)_
+> "100k lines of code fit inside a box of paper." - Tom Love (inventor of Objective C)
 
 > "One of our many problems with thinking is “cognitive load”: the number of things we can pay attention to at once. The cliche is 7±2, but for many things it is even less. We make progress by making those few things be more powerful." - Alan Kay
 
@@ -130,7 +130,7 @@ Refactoring must become part of the development cycle. Refactoring is the proces
 
 > "Good engineering is less about finding the "perfect" solution and more about understanding the tradeoffs and being able to explain them." - JBD
 
-> "Choosing the right limitations for a certain problem domain is often much more powerful than allowing anything." - Jason Moiron_
+> "Choosing the right limitations for a certain problem domain is often much more powerful than allowing anything." - Jason Moiron
 
 > "The correctness of the implementation is the most important concern, but there is no royal road to correctness. It involves diverse tasks such as thinking of invariants, testing and code reviews. Optimization should be done, but not prematurely." - Al Aho (inventor of AWK)
 
@@ -179,6 +179,7 @@ What is the difference between a Senior and Junior developer?
 ## Design Philosophy
 
 You can't look at a piece of code, function or algorithm and determine if it smells good or bad without a design philosophy. These four major categories are the basis for code reviews and should be prioritized in this order: Integrity, Readability, Simplicity and then Performance. You must consciously and with great reason be able to explain the category you are choosing.
+
 ---
 ## Integrity
 
@@ -248,7 +249,7 @@ It doesn't matter how fast the code might be if no one can understand or maintai
 
 **Quotes**
 
-_"This is a cardinal sin amongst programmers. If code looks like it’s doing one thing when it’s actually doing something else, someone down the road will read that code and misunderstand it, and use it or alter it in a way that causes bugs. That someone might be you, even if it was your code in the first place." - Nate Finch_
+> "This is a cardinal sin amongst programmers. If code looks like it’s doing one thing when it’s actually doing something else, someone down the road will read that code and misunderstand it, and use it or alter it in a way that causes bugs. That someone might be you, even if it was your code in the first place." - Nate Finch
 
 [Code Must Never Lie](https://npf.io/2017/08/lies)
 
@@ -423,7 +424,7 @@ Don't use an interface:
 
 ## Package-Oriented Design
 
-_Package Oriented Design allows a developer to identify where a package belongs inside a Go project and the design guidelines the package must respect. It defines what a Go project is and how a Go project is structured. Finally, it improves communication between team members and promotes clean package design and project architecture that is discussable._
+> Package Oriented Design allows a developer to identify where a package belongs inside a Go project and the design guidelines the package must respect. It defines what a Go project is and how a Go project is structured. Finally, it improves communication between team members and promotes clean package design and project architecture that is discussable.
 
 ---
 
@@ -490,7 +491,7 @@ Channels allow goroutines to communicate with each other through the use of sign
   - Focus on the signaling semantics and not the sharing of data.
   - Signaling with data or without data.
   - Question their use for synchronizing access to shared state.
-      - _There are cases where channels can be simpler for this but initially question._
+      - > There are cases where channels can be simpler for this but initially question.
 - Unbuffered channels:
   - Receive happens before the Send.
   - Benefit: 100% guarantee the signal being sent has been received.
@@ -572,3 +573,4 @@ On the bad method in `reader` every time that its called there has to be an allo
 We have to be consistent with our data semantics, but we must also be concerned with the impact the design is going to effect the users program. Designing API that are sympathetic with things like the garbage collector.
 
 > Remember reader is a an interface type, which makes it a valueless type. And yes, you can declare a variable of the interface type `r` does not exist because we can neither read nor write to it. It is a valueless type.
+****
