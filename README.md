@@ -1,12 +1,43 @@
 # Ultimate Go
 
-## Prepare your 🧠
+## [Prepare your 🧠](https://github.com/ardanlabs/gotraining/tree/master/topics/go#prepare-your-mind)
 
 > If you do not agree with the idioms and patterns of a given language, you should not be using that language because you are just going to be frustrated. - William Kennedy
 
 I want to take the above statement and expound on it. If you are not willing to let Go be Go, you will inevitably find yourself pissed off. And I think that same goes for language that you are using. What my humble suggestion is that you see the beauty in all programming languages, yes, even the ones that you do not agree with. The language you choose should be the one that is the right tool for the job. Remembering that will make you a better engineer.
 
+**Somewhere Along The Line**
 
+- We became impressed with programs that contain large amounts of code.
+- We strived to create large abstractions in our code base.
+- We forgot that the hardware is the platform.
+- We lost the understanding that every decision comes with a cost.
+
+**These Days Are Gone**
+
+- We can throw more hardware at the problem.
+- We can throw more developers at the problem.
+
+**Open Your Mind**
+
+- Technology changes quickly but people's minds change slowly.
+- Easy to adopt new technology but hard to adopt new ways of thinking.
+
+**Interesting Questions - What do they mean to you?**
+
+- Is it a good program?
+- Is it an efficient program?
+- Is it correct?
+- Was it done on time?
+- What did it cost?
+
+**Aspire To**
+
+- Be a champion for quality, efficiency and simplicity.
+- Have a point of view.
+- Value introspection and self-review.
+
+---
 ## Polymorphism - 4.2.1
 
 > "Polymorphism means that you write a certain program and it behaves differently depending on the data that it operates on."-
