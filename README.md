@@ -140,8 +140,23 @@ Refactoring must become part of the development cycle. Refactoring is the proces
 
 **Resources:**
 
-- [Prototype your design!](https://www.youtube.com/watch?v=vLxX3yZmw5Q) - Robert Griesemer
+- [Prototype your design!](https://www.youtube.com/watch?v=vLxX3yZmw5Q)
+---
+## Rules
 
+- Rules have costs.
+- Rules must pull their weight - Don’t be clever (high level).
+- Value the standard, don’t idolize it.
+- Be consistent!
+- Semantics convey ownership.
+
+**Quotes**
+
+> "An architecture isn't a set of pieces, it's a set of rules about what you can expect of them." - Michael Feathers
+
+**Resources:**
+
+- [The Philosophy of Google's C++ Code](https://www.youtube.com/watch?v=NOCElcMcFik)
 ---
 ## Polymorphism - 4.2.1
 
