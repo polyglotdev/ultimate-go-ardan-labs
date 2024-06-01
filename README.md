@@ -39,6 +39,8 @@ I want to take the above statement and expound on it. If you are not willing to 
 
 Software engineering might be the only field that asks you to write before you were taught to read.
 
+**Quotes**
+
 > “If most computer people lack understanding and knowledge, **then what they will select will also be lacking**.” - Alan Kay
 
 > "The software business is one of the few places we teach people to write before we teach them to read." - Tom Love (inventor of Objective C)
@@ -51,6 +53,9 @@ Software engineering might be the only field that asks you to write before you w
 
 
 We are reaching a point in the field where we have a lot of legacy code, and that could be a problem.
+
+
+**Quotes**
 
 > "There are two kinds of software projects: those that fail, and those that turn into legacy horrors." - Peter Weinberger (inventor of AWK)
 
@@ -68,6 +73,8 @@ We are reaching a point in the field where we have a lot of legacy code, and tha
 You must constantly make sure your mental model of the code you are writing and maintaining is clear. When you can't remember where a piece of logic is or you can't remember how something works, you’re losing your mental model of the code. This is a clear indication that you need to refactor the code. Focus time on structuring code that provides the best mental model possible and during code reviews validate your mental models are still intact.
 
 How much code do you think you can maintain in your head? I believe asking a single developer to maintain a mental model of more than one ream of copy paper (~10k lines of code) is asking a lot. If you do the math, it takes a team of 100 people to work on a code base that hits a million lines of code. That’s 100 people that need to be coordinated, grouped, tracked and in a constant feedback loop of communication.
+
+**Quotes**
 
 > "Let's imagine a project that's going to end up with a million lines of code or more. The probability of those projects being successful in the United States these days is very low - well under 50%. That's debatable." - Tom Love (inventor of Objective C)_
 
@@ -95,6 +102,8 @@ Productivity and performance both matter, but in the past you couldn’t have bo
 
 By following Go’s idioms and a few guidelines, we can write code that can be reasoned about by average developers. We can write software that simplifies, minimizes and reduces the amount of code we need to write to solve the problems we are working on. We don’t have to choose productivity over performance or performance over productivity anymore. We can have both.
 
+**Quotes**
+
 > "The hope is that the progress in hardware will cure all software ills. However, a critical observer may observe that software manages to outgrow hardware in size and sluggishness. Other observers had noted this for some time before, indeed the trend was becoming obvious as early as 1987." - Niklaus Wirth
 
 > "The most amazing achievement of the computer software industry is its continuing cancellation of the steady and staggering gains made by the computer hardware industry." - Henry Petroski (2015)
@@ -104,6 +113,35 @@ By following Go’s idioms and a few guidelines, we can write code that can be r
 > "C is the best balance I've ever seen between power and expressiveness. You can do almost anything you want to do by programming fairly straightforwardly and you will have a very good mental model of what's going to happen on the machine; you can predict reasonably well how quickly it's going to run, you understand what's going on .... - Brian Kernighan (2000)
 
 > "The trend in programming language design has been to create languages that enhance software reliability and programmer productivity. What we should do is develop languages alongside sound software engineering practices so the task of developing reliable programs is distributed throughout the software lifecycle, especially into the early phases of system design." - Al Aho (2009)
+---
+## Correctness vs Performance
+
+You want to write code that is optimized for correctness. Don't make coding decisions based on what you think might perform better. You must benchmark or profile to know if code is not fast enough. Then and only then should you optimize for performance. This can't be done until you have something working.
+
+Improvement comes from writing code and thinking about the code you write. Then refactoring the code to make it better. This requires the help of other people to also read the code you are writing. Prototype ideas first to validate them. Try different approaches or ask others to attempt a solution. Then compare what you have learned.
+
+Too many developers are not prototyping their ideas first before writing production code. It’s through prototyping that you can validate your thoughts, ideas and designs. This is the time when you can break down walls and figure out how things work. Prototype in the concrete and consider contracts after you have a working prototype.
+
+Refactoring must become part of the development cycle. Refactoring is the process of improving the code from the things that you learn on a daily basis. Without time to refactor, code will become impossible to manage and maintain over time. This creates the legacy issues we are seeing today.
+
+**Quotes**
+
+> "Make it correct, make it clear, make it concise, make it fast. In that order." - Wes Dyer
+
+> "Good engineering is less about finding the "perfect" solution and more about understanding the tradeoffs and being able to explain them." - JBD
+
+> "Choosing the right limitations for a certain problem domain is often much more powerful than allowing anything." - Jason Moiron_
+
+> "The correctness of the implementation is the most important concern, but there is no royal road to correctness. It involves diverse tasks such as thinking of invariants, testing and code reviews. Optimization should be done, but not prematurely." - Al Aho (inventor of AWK)
+
+> "The basic ideas of good style, which are fundamental to write clearly and simply, are just as important now as they were 35 years ago. Simple, straightforward code is just plain easier to work with and less likely to have problems. As programs get bigger and more complicated, it's even more important to have clean, simple code." - Brian Kernighan
+
+> "Problems can usually be solved with simple, mundane solutions. That means there's no glamorous work. You don't get to show off your amazing skills. You just build something that gets the job done and then move on. This approach may not earn you oohs and aahs, but it lets you get on with it." - Jason Fried
+
+**Resources:**
+
+- [Prototype your design!](https://www.youtube.com/watch?v=vLxX3yZmw5Q) - Robert Griesemer
+
 ---
 ## Polymorphism - 4.2.1
 
