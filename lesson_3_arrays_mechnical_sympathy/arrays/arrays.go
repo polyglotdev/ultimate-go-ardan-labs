@@ -26,4 +26,9 @@ func main() {
 	for i := 0; i < len(numbers); i++ {
 		fmt.Println(i, numbers[i])
 	}
+
+	friends := [5]string{"Annie", "Betty", "Charley", "Doug", "Edward"}
+	for i, friend := range friends {
+		fmt.Println(i, friend)
+	}
 }
