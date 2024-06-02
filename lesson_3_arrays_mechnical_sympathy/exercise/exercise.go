@@ -31,4 +31,11 @@ func main() {
 	for i, fruit := range arr2 {
 		fmt.Println(i, &fruit, fruit)
 	}
+	fmt.Println("------------------------------")
+	fruits := [5]string{"Apple", "Orange", "Banana", "Grape", "Plum"}
+	for i, fruit := range fruits {
+		fruit = "booger"
+		fmt.Println(i, &fruit, fruit)
+	}
+	fmt.Println("fruits:", fruits)
 }
