@@ -8,7 +8,30 @@ func main() {
 	fmt.Println(`----------------------------------`)
 
 	// append a new player to the slice
+	nbaPlayers = append(nbaPlayers, "Micheal Jordan")
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
 	nbaPlayers = append(nbaPlayers, "Magic Johnson")
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
+	nbaPlayers = append(nbaPlayers, "Larry Bird")
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
+	nbaPlayers = append(nbaPlayers, "Shaquille O'Neal")
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
+	nbaPlayers = append(nbaPlayers, "Kobe Bryant")
+	inspectSlice(nbaPlayers)
+
+	fmt.Println(`----------------------------------`)
+	nbaPlayers = append(nbaPlayers, "Tim Duncan")
 	inspectSlice(nbaPlayers)
 }
 
